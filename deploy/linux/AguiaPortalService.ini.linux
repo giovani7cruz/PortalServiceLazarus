@@ -1,0 +1,26 @@
+[AguiaServer]
+; Pasta do configFirebird.ini do AguiaServer (no Linux: bin/Linux64 -> ../..).
+ConfigDir=/opt/aguia/server
+ParamsFile=configFirebird.ini
+
+[Boleto]
+; No Linux so existe o motor FPDF (Fortes e FastReport dependem do Windows).
+Motor=FPDF
+; Logotipos dos bancos em PNG, um por banco: 001.png, 237.png, 341.png...
+LogoDir=/opt/aguia/portalservice/logos
+HomologacaoDir=/opt/aguia/portalservice/homologacao/boletos
+MargemSuperior=2
+MargemInferior=2
+MargemEsquerda=4
+MargemDireita=2
+Escala=96
+
+[S3]
+Bucket=portal-cliente-infus
+Region=sa-east-1
+TimeoutMs=60000
+; No Linux as credenciais vem so de variaveis de ambiente
+; (/etc/aguia/portalservice.env, modo 0600) - nao ha Registro.
+AccessKeyEnvironmentVariable=AWS_ACCESS_KEY_ID
+SecretKeyEnvironmentVariable=AWS_SECRET_ACCESS_KEY
+SessionTokenEnvironmentVariable=AWS_SESSION_TOKEN

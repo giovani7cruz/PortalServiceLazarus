@@ -1,0 +1,7 @@
+bin/
+lib/
+.lazcfg-linux/
+*.o
+*.ppu
+*.compiled
+backup/

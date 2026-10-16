@@ -1,0 +1,29 @@
+[Unit]
+Description=Aguia Portal Service (sincronizacao com o Portal do Cliente)
+After=network-online.target aguia-server.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=aguia
+Group=aguia
+WorkingDirectory=/opt/aguia/portalservice
+# Sem parametro o executavel sobe como daemon (mesmo ciclo do servico do Windows).
+ExecStart=/opt/aguia/portalservice/AguiaPortalService
+Restart=always
+RestartSec=10
+# Credenciais S3 (AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY), modo 0600.
+EnvironmentFile=-/etc/aguia/portalservice.env
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=aguia-portalservice
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+# Logs/, portalservice.key e o cache de logos ficam na propria pasta.
+ReadWritePaths=/opt/aguia/portalservice
+
+[Install]
+WantedBy=multi-user.target
